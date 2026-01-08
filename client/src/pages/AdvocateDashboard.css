@@ -1,0 +1,141 @@
+.advocate-dashboard-page {
+  padding: 40px 0;
+  min-height: calc(100vh - 80px);
+}
+
+.advocate-dashboard-page h1 {
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.welcome-text {
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 20px;
+}
+
+.stat-card h3 {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.stat-number {
+  font-size: 36px;
+  font-weight: bold;
+  color: #2563eb;
+  margin: 0;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.service-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.service-card h3 {
+  color: #1f2937;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  color: #6b7280;
+  margin-bottom: 15px;
+}
+
+.service-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.service-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+.bookings-table {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.bookings-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bookings-table th,
+.bookings-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.bookings-table th {
+  background: #f9fafb;
+  color: #374151;
+  font-weight: 600;
+}
+
+.bookings-table td {
+  color: #6b7280;
+}
+
+.bookings-table td button {
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .bookings-table {
+    font-size: 14px;
+  }
+  
+  .bookings-table th,
+  .bookings-table td {
+    padding: 8px;
+  }
+}
