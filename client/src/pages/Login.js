@@ -10,34 +10,50 @@ const Login = () => {
     password: ''
   });
   const [loading, setLoading] = useState(false);
+
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value
-    });
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return;
+
     setLoading(true);
 
     try {
       const data = await login(formData);
+
+      // 🔴 IMPORTANT: Validate response explicitly
+      if (!data || !data.user) {
+        throw new Error(data?.message || 'Invalid login response');
+      }
+
       toast.success('Login successful!');
-      
+
       // Redirect based on role
-      if (data.user.role === 'admin') {
+      const role = data.user.role;
+
+      if (role === 'admin') {
         navigate('/admin-dashboard');
-      } else if (data.user.role === 'advocate') {
+      } else if (role === 'advocate') {
         navigate('/advocate-dashboard');
       } else {
         navigate('/dashboard');
       }
+
     } catch (error) {
-      toast.error(error.response?.data?.message || 'Login failed');
+      toast.error(
+        error?.response?.data?.message ||
+        error?.message ||
+        'Login failed'
+      );
     } finally {
       setLoading(false);
     }
@@ -47,6 +63,7 @@ const Login = () => {
     <div className="auth-container">
       <div className="auth-card">
         <h2>Login to Your Account</h2>
+
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Email</label>
@@ -72,14 +89,23 @@ const Login = () => {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+          <button
+            type="submit"
+            className="btn btn-primary btn-block"
+            disabled={loading}
+          >
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
 
         <div className="auth-footer">
-          <p>Don't have an account? <Link to="/register">Register here</Link></p>
-          <p>Are you an advocate? <Link to="/advocate-register">Register as Advocate</Link></p>
+          <p>
+            Don't have an account? <Link to="/register">Register here</Link>
+          </p>
+          <p>
+            Are you an advocate?{' '}
+            <Link to="/advocate-register">Register as Advocate</Link>
+          </p>
         </div>
       </div>
     </div>
