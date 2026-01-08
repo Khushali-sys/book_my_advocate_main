@@ -17,7 +17,7 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://book-my-advocate-frontend.onrender.com" // 🔴 CHANGE if frontend URL differs
+      "https://book-my-advocate-main-1.onrender.com/" // 🔴 CHANGE if frontend URL differs
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
